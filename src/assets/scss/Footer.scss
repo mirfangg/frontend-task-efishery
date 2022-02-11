@@ -1,0 +1,64 @@
+// Responsive Breakpoints
+$mobile: 600px;
+$tablet: 991.9px;
+$desktop: 992px;
+$highres-desktop: 1400px;
+
+// Colors
+$white: #ffffff;
+$yellow: #ffd200;
+$green: #1c939b;
+
+// Mobile
+@media only screen and (max-width: $mobile) {
+  .siteFooter {
+    padding: 24px 16px;
+
+    span {
+      flex-direction: column;
+      grid-row-gap: 4px;
+    }
+  }
+}
+
+// Tablet
+@media (min-width: $mobile) and (max-width: $tablet) {
+  .siteFooter {
+    padding: 36px;
+
+    span {
+      flex-direction: row;
+      grid-column-gap: 8px;
+    }
+  }
+}
+
+// Desktop
+@media only screen and (min-width: $desktop) {
+  .siteFooter {
+    padding: 46px;
+
+    span {
+      flex-direction: row;
+      grid-column-gap: 8px;
+    }
+  }
+}
+
+// Global scope
+.siteFooter {
+  color: $white;
+  background-color: $green;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    a {
+      color: $white;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+// Responsive Breakpoints
+$mobile: 600px;
+$tablet: 991.9px;
+$desktop: 992px;
+$highres-desktop: 1400px;
+
+// Colors
+$white: #ffffff;
+$yellow: #ffd200;
+
+// Mobile
+@media only screen and (max-width: $mobile) {
+  .siteNavbar {
+    &__logo {
+      justify-content: center;
+    }
+  }
+}
+
+// Tablet
+@media (min-width: $mobile) and (max-width: $tablet) {
+  .siteNavbar {
+    &__logo {
+      justify-content: center;
+    }
+  }
+}
+
+// Desktop
+@media only screen and (min-width: $desktop) {
+  .siteNavbar {
+    &__logo {
+      justify-content: flex-start;
+    }
+  }
+}
+
+// Global scope
+.siteNavbar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  padding: 20px 0;
+  background-color: $white;
+  box-shadow: 4px 6px 12px 0 rgb(0 0 0 / 6%);
+
+  &__logo {
+    display: flex;
+
+    img {
+      width: 183px;
+    }
+  }
+}

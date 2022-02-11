@@ -1,9 +1,12 @@
-import React from "react";
+import Content from "../src/pages/Content";
+import Layout from "./components/Commons/Layout";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello there!</h1>
+      <Layout>
+        <Content />
+      </Layout>
     </div>
   );
 }
