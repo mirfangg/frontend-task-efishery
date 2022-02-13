@@ -4,13 +4,19 @@ $tablet: 991.9px;
 $desktop: 992px;
 $highres-desktop: 1400px;
 
+// Colors
+$white: #ffffff;
+$black: #000000;
+$dark: #21242a;
+$grey: #f6f6f6;
+$green: #1c939b;
+
 // Mobile
 @media only screen and (max-width: $mobile) {
   .content {
-    padding: 24px 16px;
+    padding: 46px 16px;
 
     &__header {
-      padding-bottom: 40px;
       text-align: center;
     }
   }
@@ -19,10 +25,9 @@ $highres-desktop: 1400px;
 // Tablet
 @media (min-width: $mobile) and (max-width: $tablet) {
   .content {
-    padding: 36px;
+    padding: 64px 36px;
 
     &__header {
-      padding-bottom: 48px;
       text-align: center;
     }
   }
@@ -31,10 +36,9 @@ $highres-desktop: 1400px;
 // Desktop
 @media only screen and (min-width: $desktop) {
   .content {
-    padding: 46px;
+    padding: 64px 0;
 
     &__header {
-      padding-bottom: 48px;
       text-align: left;
     }
   }
@@ -42,12 +46,108 @@ $highres-desktop: 1400px;
 
 // Global scope
 .content {
-  background-color: #f6f6f6;
+  background-color: $grey;
 
   &__header {
+    padding-bottom: 28px;
+
     &__title {
       font-size: 28px;
       font-weight: 700;
     }
+  }
+
+  &__table {
+    &__spinner {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      height: 60vh;
+
+      .wrapper {
+        display: flex;
+        flex-direction: row;
+        grid-column-gap: 8px;
+      }
+    }
+
+    .addProduct__button {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 20px;
+
+      button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        grid-column-gap: 8px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.react-bootstrap-table {
+  overflow: auto;
+
+  table {
+    width: 100%;
+    table-layout: auto !important;
+    background-color: $white;
+  }
+
+  thead {
+    color: $white;
+    background-color: $green;
+    vertical-align: middle !important;
+
+    tr {
+      th {
+        padding: 16px;
+
+        .filter-label {
+          .form-control {
+            display: flex;
+            font-size: 13px;
+            margin-top: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      font-size: 14px;
+
+      td {
+        padding: 16px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.react-bootstrap-table-pagination {
+  &-list {
+    .pagination {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.actionButton__wrapper {
+  display: flex;
+  justify-content: center;
+  grid-column-gap: 8px;
+
+  button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-column-gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
   }
 }

@@ -1,5 +1,5 @@
-import logo from "../../src/assets/images/eFishery-logo.png";
-import "../assets/scss/Navbar.scss";
+import logo from "../../../src/assets/images/eFishery-logo.png";
+import "../../assets/scss/Navbar.scss";
 
 function Navbar() {
   return (

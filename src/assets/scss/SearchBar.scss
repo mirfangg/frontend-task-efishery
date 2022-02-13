@@ -1,0 +1,40 @@
+// Responsive Breakpoints
+$mobile: 600px;
+$tablet: 991.9px;
+$desktop: 992px;
+$highres-desktop: 1400px;
+
+// Mobile
+@media only screen and (max-width: $mobile) {
+  .searchBar {
+    width: 100%;
+
+    input {
+      text-align: center;
+    }
+  }
+}
+
+// Tablet
+@media (min-width: $mobile) and (max-width: $tablet) {
+  .searchBar {
+    width: 100%;
+
+    input {
+      text-align: center;
+    }
+  }
+}
+
+// Desktop
+@media only screen and (min-width: $desktop) {
+  .searchBar {
+    width: 30%;
+
+    input {
+      text-align: left;
+    }
+  }
+}
+
+// Global scope

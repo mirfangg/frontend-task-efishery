@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../parts/Navbar";
-import Footer from "../../parts/Footer";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 import "../../assets/scss/Layout.scss";
 
 function Layout({ children }) {
