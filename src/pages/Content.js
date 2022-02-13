@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import DataTable from "../components/Table/DataTable";
-import axios from "axios";
+// import axios from "axios";
 import "../assets/scss/Content.scss";
 
 // fontawesome
@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // reactstrap
-import { Button, Spinner } from "reactstrap";
+import { Button } from "reactstrap";
 
 function Content() {
   // const [productsData, setProductsData] = useState([]);
