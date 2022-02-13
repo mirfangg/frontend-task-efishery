@@ -1,5 +1,6 @@
 import React from "react";
 import { formatPriceIDR, formatDate } from "../../utils/helper";
+import { connect } from "react-redux";
 import "../../assets/scss/Content.scss";
 
 // react-bootstrap-table
@@ -14,7 +15,20 @@ import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 // reactstrap
 import { Button } from "reactstrap";
 
-function DataTable({ data }) {
+const defaultSorted = [
+  {
+    dataField: "id",
+    order: "asc",
+  },
+];
+
+const mapStateToProps = (state) => {
+  return {
+    productsData: state.products.productsData,
+  };
+};
+
+function DataTable({ productsData }) {
   const headerWrapper = (column, colIndex, { sortElement, filterElement }) => {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -27,7 +41,7 @@ function DataTable({ data }) {
     );
   };
 
-  const products = data.filter(
+  const products = productsData.filter(
     (item) =>
       item.uuid !== null &&
       item.komoditas !== null &&
@@ -39,11 +53,12 @@ function DataTable({ data }) {
 
   const columns = [
     // No
-    // {
-    //   dataField: "uuid",
-    //   text: "No",
-    //   sort: true,
-    // },
+    {
+      dataField: "id",
+      // dataField: "uuid",
+      text: "No",
+      sort: true,
+    },
     // Komoditas
     {
       dataField: "komoditas",
@@ -115,19 +130,13 @@ function DataTable({ data }) {
     },
   ];
 
-  // const defaultSorted = [
-  //   {
-  //     dataField: "komoditas",
-  //     order: "asc",
-  //   },
-  // ];
-
   return (
     <BootstrapTable
-      keyField="uuid"
+      keyField="id"
+      // keyField="uuid"
       data={products}
       columns={columns}
-      // defaultSorted={defaultSorted}
+      defaultSorted={defaultSorted}
       pagination={paginationFactory()}
       filter={filterFactory()}
       bordered={false}
@@ -137,4 +146,4 @@ function DataTable({ data }) {
   );
 }
 
-export default DataTable;
+export default connect(mapStateToProps, null)(DataTable);

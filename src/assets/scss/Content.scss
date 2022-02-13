@@ -15,10 +15,6 @@ $green: #1c939b;
 @media only screen and (max-width: $mobile) {
   .content {
     padding: 46px 16px;
-
-    &__header {
-      text-align: center;
-    }
   }
 }
 
@@ -26,10 +22,6 @@ $green: #1c939b;
 @media (min-width: $mobile) and (max-width: $tablet) {
   .content {
     padding: 64px 36px;
-
-    &__header {
-      text-align: center;
-    }
   }
 }
 
@@ -37,10 +29,6 @@ $green: #1c939b;
 @media only screen and (min-width: $desktop) {
   .content {
     padding: 64px 0;
-
-    &__header {
-      text-align: left;
-    }
   }
 }
 
@@ -49,6 +37,7 @@ $green: #1c939b;
   background-color: $grey;
 
   &__header {
+    text-align: center;
     padding-bottom: 28px;
 
     &__title {
@@ -74,7 +63,7 @@ $green: #1c939b;
     .addProduct__button {
       display: flex;
       justify-content: flex-start;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
 
       button {
         display: flex;
