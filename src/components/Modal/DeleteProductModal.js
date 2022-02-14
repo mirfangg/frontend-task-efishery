@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { getProductsList, deleteProduct, requestError } from "../../actions";
 
+// fontawesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleCheck,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
+
 // reactstrap
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
@@ -39,17 +46,52 @@ function DeleteProductModal({
           Hapus Produk
         </span>
       </ModalHeader>
-      <ModalBody>Apakah Anda yakin ingin menghapus produk ini?</ModalBody>
+      <ModalBody>
+        {isRequestSuccess ? (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gridColumnGap: "6px",
+            }}
+          >
+            <FontAwesomeIcon icon={faCircleCheck} />
+            <span>Data Berhasil di Hapus!</span>
+          </div>
+        ) : error !== null ? (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gridColumnGap: "6px",
+            }}
+          >
+            <FontAwesomeIcon icon={faCircleXmark} />
+            <span>Terjadi Kesalahan!</span>
+          </div>
+        ) : (
+          <span>Apakah Anda yakin ingin menghapus produk ini?</span>
+        )}
+      </ModalBody>
       <ModalFooter>
-        <button
-          className="btn fw-bold"
-          disabled={true}
-          // disabled={isLoadingButton}
-          style={{ backgroundColor: "#1c939b", color: "#ffffff" }}
-          onClick={() => deleteProduct(deleteItem)}
-        >
-          Ya, Hapus
-        </button>
+        {isRequestSuccess ? (
+          <button
+            className="btn fw-bold"
+            style={{ backgroundColor: "#1c939b", color: "#ffffff" }}
+            onClick={toggleCloseDeleteModal}
+          >
+            Tutup
+          </button>
+        ) : (
+          <button
+            className="btn fw-bold"
+            disabled={isLoadingButton}
+            style={{ backgroundColor: "#1c939b", color: "#ffffff" }}
+            onClick={() => deleteProduct(deleteItem)}
+          >
+            {isLoadingButton ? "Loading..." : "Ya, Hapus"}
+          </button>
+        )}
       </ModalFooter>
     </Modal>
   );

@@ -26,9 +26,7 @@ function Content({ getProductsList, productsList, isLoading }) {
   useEffect(() => {
     productsList !== undefined &&
       setProductsListData(
-        productsList.filter(
-          (item) => item.uuid !== null && item.komoditas !== null
-        )
+        productsList.filter((item) => item.komoditas !== null)
       );
   }, [productsList]);
 

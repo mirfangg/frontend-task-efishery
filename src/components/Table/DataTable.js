@@ -31,12 +31,12 @@ function DataTable({ productsList }) {
   const [selectedData, setSelectedData] = useState({});
 
   const toggleOpenEditModal = (item) => {
-    // setSelectedData(item);
+    setSelectedData(item);
     setOpenEditModal(true);
   };
 
   const toggleOpenDeleteModal = (item) => {
-    // setSelectedData(item);
+    setSelectedData(item);
     setOpenDeleteModal(true);
   };
 
@@ -52,7 +52,8 @@ function DataTable({ productsList }) {
     );
   };
 
-  const columnsList = [
+  const data = productsList;
+  const columns = [
     // No
     {
       dataField: "",
@@ -116,11 +117,11 @@ function DataTable({ productsList }) {
       formatter: (rowContent, row) => {
         return (
           <div className="actionButton__wrapper">
-            <Button color="warning" onClick={() => toggleOpenEditModal()}>
+            <Button color="warning" onClick={() => toggleOpenEditModal(row)}>
               <FontAwesomeIcon icon={faPenToSquare} />
               <span>Ubah</span>
             </Button>
-            <Button color="danger" onClick={() => toggleOpenDeleteModal()}>
+            <Button color="danger" onClick={() => toggleOpenDeleteModal(row)}>
               <FontAwesomeIcon icon={faTrash} />
               <span>Hapus</span>
             </Button>
@@ -134,8 +135,8 @@ function DataTable({ productsList }) {
     <>
       <BootstrapTable
         keyField="uuid"
-        data={productsList}
-        columns={columnsList}
+        data={data}
+        columns={columns}
         defaultSorted={defaultSorted}
         pagination={paginationFactory()}
         filter={filterFactory()}
