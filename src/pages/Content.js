@@ -14,11 +14,9 @@ import AddProductModal from "../components/Modal/AddProductModal";
 // reactstrap
 import { Button, Spinner } from "reactstrap";
 
-function Content({ getProductsList, productsList, isLoading, error }) {
+function Content({ getProductsList, productsList, isLoading }) {
   const [openAddModal, setOpenAddModal] = useState(false);
   const [productsListData, setProductsListData] = useState([]);
-
-  const toggleOpenAddModal = () => setOpenAddModal(!openAddModal);
 
   useEffect(() => {
     getProductsList();
@@ -57,32 +55,19 @@ function Content({ getProductsList, productsList, isLoading, error }) {
             </div>
           ) : (
             <>
-              {error ? (
-                <div className="error__message">
-                  <div className="error__message__wrapper">
-                    <h2>Oops! Page Not Found</h2>
-                    <h4>
-                      Status code: <span>404</span>
-                    </h4>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <div className="addProduct__button">
-                    <Button color="dark" onClick={toggleOpenAddModal}>
-                      <FontAwesomeIcon icon={faPlus} />
-                      <span>Tambah Produk</span>
-                    </Button>
-                  </div>
-                  <DataTable productsList={productsListData} />
-                </>
-              )}
+              <div className="addProduct__button">
+                <Button color="dark" onClick={() => setOpenAddModal(true)}>
+                  <FontAwesomeIcon icon={faPlus} />
+                  <span>Tambah Produk</span>
+                </Button>
+              </div>
+              <DataTable productsList={productsListData} />
             </>
           )}
         </div>
         <AddProductModal
-          modal={openAddModal}
-          toggleModal={toggleOpenAddModal}
+          openAddModal={openAddModal}
+          setOpenAddModal={setOpenAddModal}
         />
       </div>
     </div>
@@ -92,7 +77,6 @@ function Content({ getProductsList, productsList, isLoading, error }) {
 const mapStateToProps = (state) => {
   return {
     isLoading: state.products.isLoading,
-    error: state.products.error,
     productsList: state.products.productsList,
   };
 };

@@ -20,7 +20,7 @@ import { Button } from "reactstrap";
 
 const defaultSorted = [
   {
-    dataField: "komoditas",
+    dataField: "uuid",
     order: "asc",
   },
 ];
@@ -28,9 +28,17 @@ const defaultSorted = [
 function DataTable({ productsList }) {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [selectedData, setSelectedData] = useState({});
 
-  const toggleOpenEditModal = () => setOpenEditModal(!openEditModal);
-  const toggleOpenDeleteModal = () => setOpenDeleteModal(!openDeleteModal);
+  const toggleOpenEditModal = () => {
+    // setSelectedData(item);
+    setOpenEditModal(true);
+  };
+
+  const toggleOpenDeleteModal = () => {
+    // setSelectedData(item);
+    setOpenDeleteModal(true);
+  };
 
   const headerWrapper = (column, colIndex, { sortElement, filterElement }) => {
     return (
@@ -46,11 +54,11 @@ function DataTable({ productsList }) {
 
   const columnsList = [
     // No
-    // {
-    //   dataField: "uuid",
-    //   text: "No",
-    //   sort: true,
-    // },
+    {
+      dataField: "",
+      text: "No",
+      sort: true,
+    },
     // Komoditas
     {
       dataField: "komoditas",
@@ -108,11 +116,11 @@ function DataTable({ productsList }) {
       formatter: (rowContent, row) => {
         return (
           <div className="actionButton__wrapper">
-            <Button color="warning" onClick={toggleOpenEditModal}>
+            <Button color="warning" onClick={() => toggleOpenEditModal()}>
               <FontAwesomeIcon icon={faPenToSquare} />
               <span>Ubah</span>
             </Button>
-            <Button color="danger" onClick={toggleOpenDeleteModal}>
+            <Button color="danger" onClick={() => toggleOpenDeleteModal()}>
               <FontAwesomeIcon icon={faTrash} />
               <span>Hapus</span>
             </Button>
@@ -137,12 +145,14 @@ function DataTable({ productsList }) {
       />
       {/* Modal */}
       <EditProductModal
-        modal={openEditModal}
-        toggleModal={toggleOpenEditModal}
+        openEditModal={openEditModal}
+        setOpenEditModal={setOpenEditModal}
+        selectedData={selectedData}
       />
       <DeleteProductModal
-        modal={openDeleteModal}
-        toggleModal={toggleOpenDeleteModal}
+        openDeleteModal={openDeleteModal}
+        setOpenDeleteModal={setOpenDeleteModal}
+        selectedData={selectedData}
       />
     </>
   );

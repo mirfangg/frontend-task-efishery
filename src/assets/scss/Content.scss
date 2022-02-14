@@ -124,28 +124,28 @@ $green: #1c939b;
       }
     }
 
-    .error__message {
-      display: grid;
-      place-items: center;
-      text-align: center;
-      height: 60vh;
+    // .error__message {
+    //   display: grid;
+    //   place-items: center;
+    //   text-align: center;
+    //   height: 60vh;
 
-      &__wrapper {
-        display: flex;
-        flex-direction: column;
-        grid-row-gap: 8px;
-      }
+    //   &__wrapper {
+    //     display: flex;
+    //     flex-direction: column;
+    //     grid-row-gap: 8px;
+    //   }
 
-      h2 {
-        font-weight: bold;
-      }
+    //   h2 {
+    //     font-weight: bold;
+    //   }
 
-      h4 {
-        span {
-          color: red;
-        }
-      }
-    }
+    //   h4 {
+    //     span {
+    //       color: red;
+    //     }
+    //   }
+    // }
 
     .addProduct__button {
       display: flex;

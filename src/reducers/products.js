@@ -8,6 +8,16 @@ import {
   GET_AREA_OPTIONS_REQUEST,
   GET_AREA_OPTIONS_SUCCESS,
   GET_AREA_OPTIONS_ERROR,
+  ADD_PRODUCT_REQUEST,
+  ADD_PRODUCT_SUCCESS,
+  ADD_PRODUCT_ERROR,
+  DELETE_PRODUCT_REQUEST,
+  DELETE_PRODUCT_ERROR,
+  DELETE_PRODUCT_SUCCESS,
+  EDIT_PRODUCT_REQUEST,
+  EDIT_PRODUCT_SUCCESS,
+  EDIT_PRODUCT_ERROR,
+  REQUEST_ERROR,
 } from "../actions";
 
 let initialState = {
@@ -15,7 +25,9 @@ let initialState = {
   sizeOptionsList: [],
   areaOptionsList: [],
   isLoading: false,
+  isLoadingButton: false,
   isLoadingComponent: false,
+  isRequestSuccess: null,
   error: null,
 };
 
@@ -78,6 +90,74 @@ const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoadingComponent: false,
+        error: action.payload,
+      };
+
+    case ADD_PRODUCT_REQUEST:
+      return {
+        ...state,
+        isLoadingButton: true,
+      };
+
+    case ADD_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoadingButton: false,
+        isRequestSuccess: true,
+      };
+
+    case ADD_PRODUCT_ERROR:
+      return {
+        ...state,
+        isLoadingButton: false,
+        error: action.payload,
+      };
+
+    case DELETE_PRODUCT_REQUEST:
+      return {
+        ...state,
+        isLoadingButton: true,
+      };
+
+    case DELETE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isRequestSuccess: true,
+        isLoadingButton: false,
+      };
+
+    case DELETE_PRODUCT_ERROR:
+      return {
+        ...state,
+        isLoadingButton: false,
+        error: action.payload,
+      };
+
+    case REQUEST_ERROR: {
+      return {
+        ...state,
+        isRequestSuccess: null,
+        error: null,
+      };
+    }
+
+    case EDIT_PRODUCT_REQUEST:
+      return {
+        ...state,
+        isLoadingButton: true,
+      };
+
+    case EDIT_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoadingButton: false,
+        isRequestSuccess: true,
+      };
+
+    case EDIT_PRODUCT_ERROR:
+      return {
+        ...state,
+        isLoadingButton: false,
         error: action.payload,
       };
 
