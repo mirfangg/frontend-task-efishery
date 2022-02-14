@@ -56,8 +56,7 @@ function Content({ getProductsList, productsList, isLoading }) {
           ) : (
             <>
               <div className="addProduct__button">
-                {/* <Button color="dark" onClick={() => setOpenAddModal(true)}> */}
-                <Button color="dark">
+                <Button color="dark" onClick={() => setOpenAddModal(true)}>
                   <FontAwesomeIcon icon={faPlus} />
                   <span>Tambah Produk</span>
                 </Button>

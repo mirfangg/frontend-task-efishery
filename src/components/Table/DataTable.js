@@ -116,13 +116,11 @@ function DataTable({ productsList }) {
       formatter: (rowContent, row) => {
         return (
           <div className="actionButton__wrapper">
-            {/* <Button color="warning" onClick={() => toggleOpenEditModal()}> */}
-            <Button color="warning">
+            <Button color="warning" onClick={() => toggleOpenEditModal()}>
               <FontAwesomeIcon icon={faPenToSquare} />
               <span>Ubah</span>
             </Button>
-            {/* <Button color="danger" onClick={() => toggleOpenDeleteModal()}> */}
-            <Button color="danger">
+            <Button color="danger" onClick={() => toggleOpenDeleteModal()}>
               <FontAwesomeIcon icon={faTrash} />
               <span>Hapus</span>
             </Button>
