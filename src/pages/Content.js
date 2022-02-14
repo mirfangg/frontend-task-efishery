@@ -32,7 +32,7 @@ function Content({ getProductsList, productsList, isLoading }) {
 
   return (
     <div className="content">
-      <div className="container">
+      <div className="container-fluid container-lg">
         {/* Header */}
         <div className="content__header">
           <h1 className="content__header__title">

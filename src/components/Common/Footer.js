@@ -4,7 +4,7 @@ import "../../assets/scss/Footer.scss";
 function Footer() {
   return (
     <footer className="siteFooter">
-      <div className="container">
+      <div className="container-fluid container-lg">
         <span>
           Copyright ©2022 Frontend Task eFishery | Made by
           <a
