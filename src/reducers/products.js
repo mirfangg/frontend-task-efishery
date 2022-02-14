@@ -1,111 +1,89 @@
+import {
+  GET_PRODUCTS_LIST_REQUEST,
+  GET_PRODUCTS_LIST_SUCCESS,
+  GET_PRODUCTS_LIST_ERROR,
+  GET_SIZE_OPTIONS_REQUEST,
+  GET_SIZE_OPTIONS_SUCCESS,
+  GET_SIZE_OPTIONS_ERROR,
+  GET_AREA_OPTIONS_REQUEST,
+  GET_AREA_OPTIONS_SUCCESS,
+  GET_AREA_OPTIONS_ERROR,
+} from "../actions";
+
 let initialState = {
-  productsData: [
-    {
-      id: 1,
-      komoditas: "Ikan Paus Edit 1",
-      area_kota: "BANDUNG",
-      area_provinsi: "JAWA BARAT",
-      price: "500000",
-      size: "30",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-    {
-      id: 2,
-      komoditas: "Ikan Paus Edit 2",
-      area_kota: "PADANG PARIAMAN",
-      area_provinsi: "SUMATERA BARAT",
-      price: "500000",
-      size: "29",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-    {
-      id: 3,
-      komoditas: "Ikan Paus Edit 3",
-      area_kota: "PADANG PARIAMAN",
-      area_provinsi: "SUMATERA BARAT",
-      price: "500000",
-      size: "28",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-    {
-      id: 4,
-      komoditas: "Ikan Paus Edit 4",
-      area_kota: "PADANG PARIAMAN",
-      area_provinsi: "SUMATERA BARAT",
-      price: "500000",
-      size: "27",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-    {
-      id: 5,
-      komoditas: "Ikan Paus Edit 5",
-      area_kota: "PADANG PARIAMAN",
-      area_provinsi: "SUMATERA BARAT",
-      price: "500000",
-      size: "26",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-    {
-      id: 6,
-      komoditas: "Ikan Paus Edit 6",
-      area_kota: "PADANG PARIAMAN",
-      area_provinsi: "SUMATERA BARAT",
-      price: "500000",
-      size: "25",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-    {
-      id: 7,
-      komoditas: "Ikan Paus Edit 7",
-      area_kota: "PADANG PARIAMAN",
-      area_provinsi: "SUMATERA BARAT",
-      price: "500000",
-      size: "24",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-    {
-      id: 8,
-      komoditas: "Ikan Paus Edit 8",
-      area_kota: "PADANG PARIAMAN",
-      area_provinsi: "SUMATERA BARAT",
-      price: "500000",
-      size: "23",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-    {
-      id: 9,
-      komoditas: "Ikan Paus Edit 9",
-      area_kota: "PADANG PARIAMAN",
-      area_provinsi: "SUMATERA BARAT",
-      price: "500000",
-      size: "22",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-    {
-      id: 10,
-      komoditas: "Ikan Paus Edit 10",
-      area_kota: "PADANG PARIAMAN",
-      area_provinsi: "SUMATERA BARAT",
-      price: "500000",
-      size: "21",
-      tgl_parsed: "2022-02-11T16:02:52.938Z",
-      timestamp: "2022-01-24T12:24:29.951Z",
-    },
-  ],
-  error: false,
+  productsList: [],
+  sizeOptionsList: [],
+  areaOptionsList: [],
+  isLoading: false,
+  isLoadingComponent: false,
+  error: null,
 };
 
-const productsData = (state = initialState, action) => {
-  return state;
+const productsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_PRODUCTS_LIST_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case GET_PRODUCTS_LIST_SUCCESS:
+      return {
+        ...state,
+        productsList: action.payload,
+        isLoading: false,
+      };
+
+    case GET_PRODUCTS_LIST_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+
+    case GET_SIZE_OPTIONS_REQUEST:
+      return {
+        ...state,
+        isLoadingComponent: true,
+      };
+
+    case GET_SIZE_OPTIONS_SUCCESS:
+      return {
+        ...state,
+        isLoadingComponent: false,
+        sizeOptionsList: action.payload,
+      };
+
+    case GET_SIZE_OPTIONS_ERROR:
+      return {
+        ...state,
+        isLoadingComponent: false,
+        error: action.payload,
+      };
+
+    case GET_AREA_OPTIONS_REQUEST:
+      return {
+        ...state,
+        isLoadingComponent: true,
+      };
+
+    case GET_AREA_OPTIONS_SUCCESS:
+      return {
+        ...state,
+        isLoadingComponent: false,
+        areaOptionsList: action.payload,
+      };
+
+    case GET_AREA_OPTIONS_ERROR:
+      return {
+        ...state,
+        isLoadingComponent: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
 };
 
-export default productsData;
+export default productsReducer;

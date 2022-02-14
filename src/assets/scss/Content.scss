@@ -15,6 +15,17 @@ $green: #1c939b;
 @media only screen and (max-width: $mobile) {
   .content {
     padding: 46px 16px;
+
+    &__table {
+      .addProduct__button {
+        justify-content: flex-end;
+
+        button {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
   }
 }
 
@@ -22,6 +33,35 @@ $green: #1c939b;
 @media (min-width: $mobile) and (max-width: $tablet) {
   .content {
     padding: 64px 36px;
+
+    &__table {
+      .addProduct__button {
+        justify-content: flex-end;
+
+        button {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .react-bootstrap-table {
+    thead {
+      tr {
+        th {
+          padding: 16px;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 16px;
+        }
+      }
+    }
   }
 }
 
@@ -29,6 +69,30 @@ $green: #1c939b;
 @media only screen and (min-width: $desktop) {
   .content {
     padding: 64px 0;
+
+    &__table {
+      .addProduct__button {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  .react-bootstrap-table {
+    thead {
+      tr {
+        th {
+          padding: 16px;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 16px;
+        }
+      }
+    }
   }
 }
 
@@ -60,10 +124,32 @@ $green: #1c939b;
       }
     }
 
+    &__error {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      height: 60vh;
+
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: 8px;
+      }
+
+      h2 {
+        font-weight: bold;
+      }
+
+      h4 {
+        span {
+          color: red;
+        }
+      }
+    }
+
     .addProduct__button {
       display: flex;
-      justify-content: flex-start;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
 
       button {
         display: flex;
@@ -93,8 +179,6 @@ $green: #1c939b;
 
     tr {
       th {
-        padding: 16px;
-
         .filter-label {
           .form-control {
             display: flex;
@@ -111,7 +195,6 @@ $green: #1c939b;
       font-size: 14px;
 
       td {
-        padding: 16px;
         vertical-align: middle;
       }
     }

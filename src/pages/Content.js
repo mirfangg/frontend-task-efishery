@@ -1,6 +1,7 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import DataTable from "../components/Table/DataTable";
-// import axios from "axios";
+import { connect } from "react-redux";
+import { getProductsList } from "../actions";
 import "../assets/scss/Content.scss";
 
 // fontawesome
@@ -8,28 +9,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // reactstrap
-import { Button } from "reactstrap";
+import { Button, Spinner } from "reactstrap";
 
-function Content() {
-  // const [productsData, setProductsData] = useState([]);
-  // const [isLoading, setIsloading] = useState(true);
+function Content({ getProductsList, productsList, isLoading, error }) {
+  const [productsListData, setProductsListData] = useState([]);
 
-  // const getProductsData = async () => {
-  //   await axios
-  //     .get(
-  //       "https://stein.efishery.com/v1/storages/5e1edf521073e315924ceab4/list"
-  //     )
-  //     .then((response) => {
-  //       if (response.status) {
-  //         setProductsData(response.data);
-  //         setIsloading(false);
-  //       }
-  //     });
-  // };
+  useEffect(() => {
+    getProductsList();
+  }, []);
 
-  // useEffect(() => {
-  //   getProductsData();
-  // }, []);
+  useEffect(() => {
+    productsList !== undefined &&
+      setProductsListData(productsList.filter((item) => item.uuid !== null));
+  }, [productsList]);
 
   return (
     <div className="content">
@@ -43,14 +35,7 @@ function Content() {
 
         {/* Table */}
         <div className="content__table">
-          <div className="addProduct__button">
-            <Button color="dark">
-              <FontAwesomeIcon icon={faPlus} />
-              <span>Tambah Produk</span>
-            </Button>
-          </div>
-          <DataTable />
-          {/* {isLoading ? (
+          {isLoading ? (
             <div className="content__table__spinner">
               <div className="wrapper">
                 <Spinner color="primary" type="grow" />
@@ -61,19 +46,46 @@ function Content() {
             </div>
           ) : (
             <>
-              <div className="addProduct__button">
-                <Button color="dark">
-                  <FontAwesomeIcon icon={faPlus} />
-                  <span>Tambah Produk</span>
-                </Button>
-              </div>
-              <DataTable data={productsData} />
+              {error ? (
+                <div className="content__table__error">
+                  <div className="content__table__error__wrapper">
+                    <h2>Oops! Page Not Found</h2>
+                    <h4>
+                      Status code: <span>404</span>
+                    </h4>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="addProduct__button">
+                    <Button color="dark">
+                      <FontAwesomeIcon icon={faPlus} />
+                      <span>Tambah Produk</span>
+                    </Button>
+                  </div>
+                  <DataTable productsList={productsListData} />
+                </>
+              )}
             </>
-          )} */}
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default Content;
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.products.isLoading,
+    error: state.products.error,
+    productsList: state.products.productsList,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProductsList: () => dispatch(getProductsList()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

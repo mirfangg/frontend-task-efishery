@@ -1,6 +1,5 @@
 import React from "react";
 import { formatPriceIDR, formatDate } from "../../utils/helper";
-import { connect } from "react-redux";
 import "../../assets/scss/Content.scss";
 
 // react-bootstrap-table
@@ -17,18 +16,12 @@ import { Button } from "reactstrap";
 
 const defaultSorted = [
   {
-    dataField: "id",
+    dataField: "uuid",
     order: "asc",
   },
 ];
 
-const mapStateToProps = (state) => {
-  return {
-    productsData: state.products.productsData,
-  };
-};
-
-function DataTable({ productsData }) {
+function DataTable({ productsList }) {
   const headerWrapper = (column, colIndex, { sortElement, filterElement }) => {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -41,24 +34,13 @@ function DataTable({ productsData }) {
     );
   };
 
-  const products = productsData.filter(
-    (item) =>
-      item.uuid !== null &&
-      item.komoditas !== null &&
-      item.size !== null &&
-      item.tgl_parsed !== null &&
-      item.area_provinsi !== null &&
-      item.timestamp != null
-  );
-
-  const columns = [
+  const columnsList = [
     // No
-    {
-      dataField: "id",
-      // dataField: "uuid",
-      text: "No",
-      sort: true,
-    },
+    // {
+    //   dataField: "uuid",
+    //   text: "No",
+    //   sort: true,
+    // },
     // Komoditas
     {
       dataField: "komoditas",
@@ -72,10 +54,10 @@ function DataTable({ productsData }) {
     // Kota/Kabupaten
     {
       dataField: "area_kota",
-      text: "Kota/Kabupaten",
+      text: "Kota/Kab",
       sort: true,
       filter: textFilter({
-        placeholder: "Ketik Kota/Kabupaten...",
+        placeholder: "Ketik Kota/Kab...",
       }),
       headerFormatter: headerWrapper,
     },
@@ -131,19 +113,20 @@ function DataTable({ productsData }) {
   ];
 
   return (
-    <BootstrapTable
-      keyField="id"
-      // keyField="uuid"
-      data={products}
-      columns={columns}
-      defaultSorted={defaultSorted}
-      pagination={paginationFactory()}
-      filter={filterFactory()}
-      bordered={false}
-      bootstrap4
-      hover
-    />
+    <>
+      <BootstrapTable
+        keyField="uuid"
+        data={productsList}
+        columns={columnsList}
+        defaultSorted={defaultSorted}
+        pagination={paginationFactory()}
+        filter={filterFactory()}
+        bordered={false}
+        bootstrap4
+        hover
+      />
+    </>
   );
 }
 
-export default connect(mapStateToProps, null)(DataTable);
+export default DataTable;
