@@ -115,7 +115,7 @@ function EditProductModal({
         <ModalBody>
           {/* Komoditas */}
           <div className="mb-3">
-            <label for="komoditas_id" className="form-label fw-bold">
+            <label htmlFor="komoditas_id" className="form-label fw-bold">
               Komoditas
             </label>
             <input
@@ -133,7 +133,7 @@ function EditProductModal({
 
           {/* Ukuran */}
           <div className="mb-3">
-            <label for="size_id" className="form-label fw-bold">
+            <label htmlFor="size_id" className="form-label fw-bold">
               Ukuran
             </label>
             <select
@@ -157,7 +157,7 @@ function EditProductModal({
 
           {/* Area */}
           <div className="mb-3">
-            <label for="area_id" className="form-label fw-bold">
+            <label htmlFor="area_id" className="form-label fw-bold">
               Area
             </label>
             <select
@@ -186,7 +186,7 @@ function EditProductModal({
 
           {/* Harga */}
           <div className="mb-3">
-            <label for="price_id" className="form-label fw-bold">
+            <label htmlFor="price_id" className="form-label fw-bold">
               Harga
             </label>
             <input
