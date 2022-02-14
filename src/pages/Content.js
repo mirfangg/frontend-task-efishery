@@ -8,11 +8,17 @@ import "../assets/scss/Content.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+// Modal
+import AddProductModal from "../components/Modal/AddProductModal";
+
 // reactstrap
 import { Button, Spinner } from "reactstrap";
 
 function Content({ getProductsList, productsList, isLoading, error }) {
+  const [openAddModal, setOpenAddModal] = useState(false);
   const [productsListData, setProductsListData] = useState([]);
+
+  const toggleOpenAddModal = () => setOpenAddModal(!openAddModal);
 
   useEffect(() => {
     getProductsList();
@@ -21,7 +27,11 @@ function Content({ getProductsList, productsList, isLoading, error }) {
 
   useEffect(() => {
     productsList !== undefined &&
-      setProductsListData(productsList.filter((item) => item.uuid !== null));
+      setProductsListData(
+        productsList.filter(
+          (item) => item.uuid !== null && item.komoditas !== null
+        )
+      );
   }, [productsList]);
 
   return (
@@ -48,8 +58,8 @@ function Content({ getProductsList, productsList, isLoading, error }) {
           ) : (
             <>
               {error ? (
-                <div className="content__table__error">
-                  <div className="content__table__error__wrapper">
+                <div className="error__message">
+                  <div className="error__message__wrapper">
                     <h2>Oops! Page Not Found</h2>
                     <h4>
                       Status code: <span>404</span>
@@ -59,7 +69,7 @@ function Content({ getProductsList, productsList, isLoading, error }) {
               ) : (
                 <>
                   <div className="addProduct__button">
-                    <Button color="dark">
+                    <Button color="dark" onClick={toggleOpenAddModal}>
                       <FontAwesomeIcon icon={faPlus} />
                       <span>Tambah Produk</span>
                     </Button>
@@ -70,6 +80,10 @@ function Content({ getProductsList, productsList, isLoading, error }) {
             </>
           )}
         </div>
+        <AddProductModal
+          modal={openAddModal}
+          toggleModal={toggleOpenAddModal}
+        />
       </div>
     </div>
   );

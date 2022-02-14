@@ -14,7 +14,7 @@ $green: #1c939b;
 // Mobile
 @media only screen and (max-width: $mobile) {
   .content {
-    padding: 46px 16px;
+    padding: 46px 0;
 
     &__table {
       .addProduct__button {
@@ -32,7 +32,7 @@ $green: #1c939b;
 // Tablet
 @media (min-width: $mobile) and (max-width: $tablet) {
   .content {
-    padding: 64px 36px;
+    padding: 64px 0;
 
     &__table {
       .addProduct__button {
@@ -124,7 +124,7 @@ $green: #1c939b;
       }
     }
 
-    &__error {
+    .error__message {
       display: grid;
       place-items: center;
       text-align: center;
