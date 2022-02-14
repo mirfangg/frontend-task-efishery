@@ -30,12 +30,12 @@ function DataTable({ productsList }) {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedData, setSelectedData] = useState({});
 
-  const toggleOpenEditModal = () => {
+  const toggleOpenEditModal = (item) => {
     // setSelectedData(item);
     setOpenEditModal(true);
   };
 
-  const toggleOpenDeleteModal = () => {
+  const toggleOpenDeleteModal = (item) => {
     // setSelectedData(item);
     setOpenDeleteModal(true);
   };
