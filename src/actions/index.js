@@ -13,9 +13,9 @@ export const GET_AREA_OPTIONS_REQUEST = "GET_AREA_OPTIONS_REQUEST";
 export const GET_AREA_OPTIONS_SUCCESS = "GET_AREA_OPTIONS_SUCCESS";
 export const GET_AREA_OPTIONS_ERROR = "GET_AREA_OPTIONS_ERROR";
 
-const headers = {
-  headers: { "Content-Type": "application/json" },
-};
+// const headers = {
+//   headers: { "Content-Type": "application/json" },
+// };
 
 // Get Products List
 const getProductsListRequest = () => {

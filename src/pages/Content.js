@@ -16,6 +16,7 @@ function Content({ getProductsList, productsList, isLoading, error }) {
 
   useEffect(() => {
     getProductsList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
