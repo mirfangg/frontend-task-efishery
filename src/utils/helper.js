@@ -1,5 +1,7 @@
 export const formatPriceIDR = (x) => {
-  return `Rp ${x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+  return `Rp ${
+    x !== null && x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  }`;
 };
 
 export const formatDate = (selectedDate) => {
